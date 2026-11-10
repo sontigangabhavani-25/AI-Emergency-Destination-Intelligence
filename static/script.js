@@ -69,11 +69,14 @@ function setEmergencyLocation(latitude, longitude, message) {
 // 3. Search Emergency Address
 // ----------------------------------
 
+
 document.getElementById("searchAddress").addEventListener(
     "click",
     async function () {
 
-        const address = document.getElementById("emergencyAddress").value.trim();
+        const address = document
+            .getElementById("emergencyAddress")
+            .value.trim();
 
         const button = document.getElementById("searchAddress");
         const status = document.getElementById("locationStatus");
@@ -91,34 +94,102 @@ document.getElementById("searchAddress").addEventListener(
 
         try {
 
-            const searchURL =
-                "https://nominatim.openstreetmap.org/search?" +
-                "format=jsonv2&limit=1&countrycodes=in&q=" +
-                encodeURIComponent(address);
+            // Search using original address first
+            const searchQueries = [
+                address,
+                address + ", Andhra Pradesh, India"
+            ];
 
-            const response = await fetch(searchURL);
+            let locations = [];
 
-            if (!response.ok) {
-                throw new Error("Location search service is unavailable.");
+            for (const query of searchQueries) {
+
+                const searchURL =
+                    "https://nominatim.openstreetmap.org/search?" +
+                    "format=jsonv2&limit=5&countrycodes=in&q=" +
+                    encodeURIComponent(query);
+
+                const response = await fetch(searchURL);
+
+                if (!response.ok) {
+                    throw new Error(
+                        "Location search service is unavailable. Please try again."
+                    );
+                }
+
+                locations = await response.json();
+
+                if (locations && locations.length > 0) {
+                    break;
+                }
+
+                // Wait briefly before retrying
+                await new Promise(resolve => setTimeout(resolve, 1200));
             }
 
-            const locations = await response.json();
-
+            // If no location is found
             if (!locations || locations.length === 0) {
+
                 throw new Error(
-                    "Location not found. Please enter a more specific address."
+                    "Location not found. Try entering a nearby landmark, area, or city name."
                 );
+
             }
 
-            const selectedLocation = locations[0];
+            // If multiple locations are found, ask user to choose
+            let selectedLocation = locations[0];
 
+            if (locations.length > 1) {
+
+                const choices = locations.map(
+                    (location, index) =>
+                        `${index + 1}. ${location.display_name}`
+                ).join("\n\n");
+
+                const choice = prompt(
+                    "Multiple locations found. Select the correct location by entering its number:\n\n" +
+                    choices
+                );
+
+                if (choice === null) {
+                    status.textContent = "Location selection cancelled.";
+                    status.className = "";
+                    return;
+                }
+
+                const selectedIndex = Number(choice) - 1;
+
+                if (
+                    !Number.isInteger(selectedIndex) ||
+                    selectedIndex < 0 ||
+                    selectedIndex >= locations.length
+                ) {
+                    throw new Error(
+                        "Invalid selection. Please search again."
+                    );
+                }
+
+                selectedLocation = locations[selectedIndex];
+
+            }
+
+            // Extract coordinates
             const latitude = Number(selectedLocation.lat);
             const longitude = Number(selectedLocation.lon);
 
+            if (
+                !Number.isFinite(latitude) ||
+                !Number.isFinite(longitude)
+            ) {
+                throw new Error("Invalid coordinates received.");
+            }
+
+            // Fill coordinates and display marker
             setEmergencyLocation(
                 latitude,
                 longitude,
-                "Location found: " + selectedLocation.display_name +
+                "Location found: " +
+                selectedLocation.display_name +
                 ". Please verify the map marker."
             );
 
