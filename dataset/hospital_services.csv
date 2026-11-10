@@ -1,0 +1,67 @@
+hospital_id,service_name,evidence_status,notes
+BH001,Cardiology,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH001,Cardiothoracic Surgery,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH001,Urology,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH001,Neurosurgery,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH001,General Medicine,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH001,General Surgery,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH001,Nephrology,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH001,Orthopedics,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH001,ENT,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH001,Pediatrics,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH001,OBG,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH001,Pulmonology,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH001,Radiology,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH002,Cardiology,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH002,Nephrology,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH002,Urology,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH002,Neurology,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH002,Neurosurgery,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH002,Plastic Surgery,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH002,Gastroenterology,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH002,General Medicine,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH002,Pulmonology,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH002,Orthopedics,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH002,ENT,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH002,Psychiatry,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH002,Pediatrics,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH002,OBG,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH002,Dermatology,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH002,Rheumatology,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH002,Endocrinology,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH003,General Medicine,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH003,General Surgery,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH003,Orthopedics,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH003,OBG,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH003,Pulmonology,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH003,Neurosurgery,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH003,Surgical Gastroenterology,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH003,Cardiology,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH003,Pediatrics,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH004,Orthopedics,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH004,Neurosurgery,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH004,General Surgery,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH004,General Medicine,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH004,Gynaecology,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH004,Urology,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH004,Nephrology,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH004,Critical Care,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH004,Trauma care,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH005,General Medicine,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH005,Obstetrics,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH005,Gynaecology,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH005,Urology,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH005,Orthopedics,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH005,ENT,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH005,General Surgery,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH011,Pediatrics,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH011,OBG,Publicly listed,Service listing is not confirmation of current staffing/availability
+BH006,Unknown - needs verification,Unknown,Do not treat as available
+BH007,Unknown - needs verification,Unknown,Do not treat as available
+BH008,Unknown - needs verification,Unknown,Do not treat as available
+BH009,Unknown - needs verification,Unknown,Do not treat as available
+BH010,Unknown - needs verification,Unknown,Do not treat as available
+BH012,Unknown - needs verification,Unknown,Do not treat as available
+BH013,Unknown - needs verification,Unknown,Do not treat as available
+BH014,Unknown - needs verification,Unknown,Do not treat as available
+BH015,Unknown - needs verification,Unknown,Do not treat as available

@@ -1,0 +1,269 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Emergency Destination Intelligence System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='styles.css') }}">
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo">✚</div>
+            <div>
+                <h1>AI Emergency Destination Intelligence</h1>
+                <p>Smart Hospital Recommendation & Dynamic Routing System</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="welcome-section">
+            <h2>Find the Right Hospital, Faster.</h2>
+            <p>
+                Enter the emergency location and select the emergency type
+                to identify candidate hospitals based on listed services
+                and estimated road travel time.
+            </p>
+        </section>
+
+        <!-- Emergency Details -->
+
+        <section class="form-container">
+
+            <div class="section-heading">
+                <span class="heading-icon">📍</span>
+                <div>
+                    <h2>Emergency Details</h2>
+                    <p>Enter the details below to find candidate hospitals.</p>
+                </div>
+            </div>
+
+            <form id="emergencyForm">
+
+                <!-- Address Search -->
+
+                <div class="form-group">
+                    <label for="emergencyAddress">
+                        Search Emergency Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="emergencyAddress"
+                        placeholder="Enter area, street or landmark"
+                    >
+
+                    <button type="button" id="searchAddress">
+                        🔍 Search Location
+                    </button>
+
+                    <small>
+                        Example: Bhimavaram Railway Station, Bhimavaram
+                    </small>
+                </div>
+
+                <!-- Current Location -->
+
+                <div class="form-group">
+                    <button type="button" id="useCurrentLocation">
+                        📍 Use My Current Location
+                    </button>
+
+                    <small>
+                        Use this option only if the emergency is at your
+                        current location. Browser location permission is required.
+                    </small>
+                </div>
+
+                <!-- Map Selection -->
+
+                <div class="form-group">
+                    <p>
+                        <strong>Or select the emergency location on the map</strong>
+                    </p>
+
+                    <button type="button" id="selectOnMap">
+                        🗺️ Select Location on Map
+                    </button>
+
+                    <small>
+                        Activate this option and click the map at the
+                        emergency location.
+                    </small>
+                </div>
+
+                <p id="locationStatus" aria-live="polite">
+                    Emergency location not selected.
+                </p>
+
+                <!-- Latitude -->
+
+                <div class="form-group">
+                    <label for="latitude">
+                        Emergency Location Latitude
+                    </label>
+
+                    <input
+                        type="number"
+                        step="any"
+                        id="latitude"
+                        placeholder="Latitude will appear here"
+                        required
+                    >
+                </div>
+
+                <!-- Longitude -->
+
+                <div class="form-group">
+                    <label for="longitude">
+                        Emergency Location Longitude
+                    </label>
+
+                    <input
+                        type="number"
+                        step="any"
+                        id="longitude"
+                        placeholder="Longitude will appear here"
+                        required
+                    >
+                </div>
+
+                <!-- Emergency Type -->
+
+                <div class="form-group">
+                    <label for="emergency">
+                        Select Emergency Type
+                    </label>
+
+                    <select id="emergency" required>
+                        <option value="">Choose Emergency Type</option>
+                        <option value="Chest_Pain">Chest Pain</option>
+                        <option value="General_Medical">General Medical</option>
+                        <option value="Pregnancy_Complication">
+                            Pregnancy Complication
+                        </option>
+                        <option value="Road_Trauma">Road Trauma</option>
+                        <option value="Child_Emergency">Child Emergency</option>
+                        <option value="Breathing_Difficulty">
+                            Breathing Difficulty
+                        </option>
+                        <option value="Stroke_Suspected">
+                            Suspected Stroke
+                        </option>
+                    </select>
+                </div>
+
+                <button type="button" id="findHospitals">
+                    Find Recommended Hospitals →
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- Hospital Recommendations -->
+
+        <section class="results-container" id="results">
+
+            <div class="section-heading">
+                <span class="heading-icon">🏥</span>
+                <div>
+                    <h2>Hospital Recommendations</h2>
+                    <p>Candidate hospitals will appear here.</p>
+                </div>
+            </div>
+
+            <div class="empty-state">
+                <div class="empty-icon">✚</div>
+                <p>Your hospital recommendations will appear here.</p>
+                <small>
+                    Enter emergency details and click the button to begin.
+                </small>
+            </div>
+
+        </section>
+
+        <!-- Emergency Route Map -->
+
+        <section class="map-container">
+
+            <div class="section-heading">
+                <span class="heading-icon">🗺️</span>
+                <div>
+                    <h2>Emergency Route Map</h2>
+                    <p>Emergency location and recommended hospitals</p>
+                </div>
+            </div>
+
+            <div id="map"></div>
+
+            <div class="route-legend">
+
+                <h3>Route Legend</h3>
+
+                <div class="legend-item">
+                    <span class="legend-line green-line"></span>
+                    <span>Rank 1 – Top Recommended Hospital</span>
+                </div>
+
+                <div class="legend-item">
+                    <span class="legend-line blue-line"></span>
+                    <span>Rank 2 – Second Recommended Hospital</span>
+                </div>
+
+                <div class="legend-item">
+                    <span class="legend-line purple-line"></span>
+                    <span>Rank 3 – Third Recommended Hospital</span>
+                </div>
+
+                <div class="legend-item">
+                    <span class="legend-dot red-dot"></span>
+                    <span>Emergency Location</span>
+                </div>
+
+            </div>
+
+            <p class="map-note">
+                Map routes are based on OpenStreetMap road-network data.
+                They are not live ambulance routes.
+            </p>
+
+        </section>
+
+        <!-- Important Notice -->
+
+        <section class="disclaimer">
+            <strong>Important Notice</strong>
+            <p>
+                This is an academic prototype. Hospital information and
+                services require independent verification. Travel times are
+                estimates based on road-network data and do not represent
+                live traffic or actual ambulance ETAs. This system is not
+                a substitute for professional emergency services.
+            </p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Designed for Intelligent Emergency Destination Assistance</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

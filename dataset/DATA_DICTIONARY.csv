@@ -1,0 +1,6 @@
+file_name,row_grain,what_it_contains,important_caution
+hospitals_master.csv,One row per facility,"Stores facility identity, address, facility type, public source and verification status.",Do not infer unknown services or live availability.
+hospital_services.csv,One row per facility-service pair,Stores which services are publicly listed for each facility.,Publicly listed does not mean available right now.
+hospital_status_synthetic.csv,One row per facility per demo date/hour,"Simulated occupancy, waiting time and load for dashboard testing.",Entirely synthetic; not actual hospital capacity.
+travel_history_synthetic.csv,One row per simulated trip,Synthetic distance/time examples to test code and UI.,Not measured trips; do not claim ML accuracy using this.
+emergency_test_scenarios.csv,One row per test scenario,Synthetic emergency categories and origin zones for testing workflow.,Not patient data; not medical triage.
